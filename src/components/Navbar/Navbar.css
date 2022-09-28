@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+.Navbar-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color:lightskyblue
+}
+.Titulo{
+    font-size: 58px;
+
+}
+.Button{
+    padding: 20px;
+    
+}
+.btn{
+    margin: 10px;
+}
+
+
