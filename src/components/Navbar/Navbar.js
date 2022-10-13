@@ -1,6 +1,7 @@
 import './Navbar.css'
 import CartWidget from '../CartWidget/CartWidget'
 import Logo from '../LogoPage/LogoPage'
+import { Link } from 'react-router-dom'
 
 
 
@@ -8,11 +9,14 @@ const Navbar = () => {
     return(
         <nav className='Navbar-nav'>
             <Logo />
-            <h1 className='Titulo mt-3'>GR STORE</h1>
-            <div className='Button'>
-                <button className='btn btn-info'>Home</button>
-                <button className='btn btn-info'>Productos</button>
-                <button className='btn btn-info'>Contacto</button>
+            <Link className='Titulo' to='/'>
+                <h1>GR STORE</h1>
+            </Link>
+
+            <div className='LinkCat'>
+                <Link className='LinkItem' to={'/category/Smartphone'}>Smartphone</Link>
+                <Link className='LinkItem'to={'/category/Macbook'}>Macbook</Link>
+                <Link className='LinkItem'to={'/category/Ipad'}>Ipad</Link>
 
             </div>
             <CartWidget />

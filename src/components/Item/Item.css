@@ -1,0 +1,57 @@
+.CardItem {
+    width: 150px;
+    padding: 30px;
+    margin: 30px;
+    font-size: 10px;
+    background-color: lightgray;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+}
+
+.ContenidoCard {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+}
+
+.ItemName {
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+}
+.Precio {
+    font-size: 20px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+}
+
+
+.ImgItem {
+    width: 200px;
+    height: 150px; 
+    object-fit:contain;
+    object-position:center;
+}
+
+.Detalle {
+    display: flex;
+    justify-content: center;
+    background-color: #11A8DC;
+    width: auto;
+    border-radius: 10px;
+}
+.Detalle:hover{
+    transform: scale(1.1);
+}
+
+.Detalle a{
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.Detalle a:hover{
+    color: white;
+}

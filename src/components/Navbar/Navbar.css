@@ -7,18 +7,41 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color:lightskyblue
+    background-color: #52D3FF;
 }
 .Titulo{
-    font-size: 58px;
+    color: black;
+    text-decoration: none;
+    margin-top: 25px;
 
 }
-.Button{
-    padding: 20px;
+
+.Titulo:hover{
+    transform: scale(1.1);
+    color: black;
+}
+
+.LinkItem{
+    background-color: #11A8DC;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 10px;
+    color: black;
+    text-decoration: none;    
+    font-size: 16px;
+    font-weight: bolder;
+
+}
+
+.LinkItem:hover{
+    color: white;
     
 }
-.btn{
-    margin: 10px;
+
+.LinkCat{
+    margin-top: 40px;
 }
+
+
 
 
