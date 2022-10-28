@@ -13,9 +13,10 @@ const ItemListContainer = ({greeting}) => {
 
     const {idCategory} = useParams ()
 
+    /* FUNCION USE EFFECT */
     useEffect(() => {
         setLoading(true)
-
+        console.log('funcion useEffect')
         const asyncFunction = idCategory ? getProductsByCategory : getProducts
        
         asyncFunction(idCategory).then(response => {
@@ -25,6 +26,8 @@ const ItemListContainer = ({greeting}) => {
         }).finally(() => {
             setLoading(false)
         })  
+
+        return () => console.log('funcion clean up')
     }, [idCategory])
 
     /* console.log(products)
@@ -34,7 +37,7 @@ const ItemListContainer = ({greeting}) => {
         return <h1>Loading...</h1>
     }
     return (
-        <div onClick={() => console.log('click en itemlistcontainer')}>
+        <div >
             {/* <button onClick={(e) => console.log(e)}>boton</button> */}
             <ItemList products={products} />
         </div>

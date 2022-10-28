@@ -2,14 +2,16 @@ import './ItemDetailContainer.css'
 import { useState, useEffect } from 'react'
 import { getProductById } from '../../asyncMook'
 import ItemDetail from '../ItemDetail/ItemDetail'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = ({ setCart}) => {
     const [product, setProduct] = useState()
     const [loading, setLoading] = useState(true)
 
     const { idProduct } = useParams()
-    console.log(idProduct)
+
+    const navigate = useNavigate()
+    
 
     useEffect(() => {
         getProductById(idProduct).then(response => {
@@ -20,12 +22,13 @@ const ItemDetailContainer = () => {
     }, [idProduct])
 
     if(loading) {
-        return <h1>Cargando...</h1>
+        return <h1>Loading...</h1>
     }
 
     return(
         <div className='ItemDetailContainer' >
             <ItemDetail  {...product} />
+            <button className='Button mb-5' onClick={() => navigate(-1)}>Atrás</button>
         </div>
     )
 }
