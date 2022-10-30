@@ -8,6 +8,7 @@
     flex-direction: row;
     justify-content: space-around;
     background-color: #52D3FF;
+    width: 100%;
 }
 .Titulo{
     color: black;

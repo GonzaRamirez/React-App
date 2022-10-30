@@ -1,11 +1,9 @@
 import './ItemListContainer.css'
 import { useState,useEffect } from "react"
-import { getProducts, getProductsByCategory } from "../../asyncMook"
 import ItemList from "../ItemList/ItemList"
 import { useParams } from 'react-router-dom'
-/* const ItemListContainer = ({ greeting }) => {
-    return <h1 className='mt-5'>{greeting}</h1>
-} */
+import { getDocs, collection, query, where } from 'firebase/firestore'
+import { db } from '../../Services/Firebase'
 
 const ItemListContainer = ({greeting}) => {
     const [products, setProducts] = useState([])
@@ -16,23 +14,37 @@ const ItemListContainer = ({greeting}) => {
     /* FUNCION USE EFFECT */
     useEffect(() => {
         setLoading(true)
-        console.log('funcion useEffect')
-        const asyncFunction = idCategory ? getProductsByCategory : getProducts
+        
+        const collectionRef = idCategory
+        ? query (collection (db, 'Products'), where ('category', '==', idCategory))
+        : collection (db, 'Products')
+
+      
        
-        asyncFunction(idCategory).then(response => {
-            setProducts(response)
+        getDocs(collectionRef).then(response => {
+            console.log(response)
+            const productsAdapted = response.docs.map(doc => {
+                const data = doc.data()
+                console.log(data)
+
+                return { id: doc.id, ...data}
+
+            })
+
+        
+            setProducts(productsAdapted)
+
+        
         }).catch(error => {
             console.log(error)
         }).finally(() => {
             setLoading(false)
         })  
 
-        return () => console.log('funcion clean up')
+     
     }, [idCategory])
 
-    /* console.log(products)
-    const productsMapped = products.map(prod => <li>{prod.name}</li>)
-    console.log(productsMapped) */
+   
     if(loading){
         return <h1>Loading...</h1>
     }

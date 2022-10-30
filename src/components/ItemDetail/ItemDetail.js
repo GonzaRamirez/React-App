@@ -2,14 +2,14 @@ import './ItemDetail.css'
 import ItemCount from '../ItemCount/ItemCount'
 import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
-import { Link } from 'react-router-dom'
+/* import { Link } from 'react-router-dom' */
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
 
 
 const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
     
-    const { addProduct, insInCart } = useContext(CartContext)
+    const { addProduct, /* insInCart */ } = useContext(CartContext)
 
    
     const handleOnAdd = (Quantity) => {
@@ -60,11 +60,6 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
                 </div>           
             <footer className='ItemFooter'>
             <ItemCount onAdd={handleOnAdd} stock={stock} />
-                {
-                    /* insInCart(id)
-                    ? <ItemCount onAdd={handleOnAdd} stock={stock} />
-                    : <Link to='/cart'>Completar compra</Link> */
-                }
             </footer>
         </article>
     )
