@@ -12,7 +12,7 @@ export const FormData = createContext({
 })
 
 
-const ClientForm = ({completoDatos}) => {
+const FormUser = ({completoDatos}) => {
     
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
@@ -24,7 +24,7 @@ const ClientForm = ({completoDatos}) => {
 
 
 
-const submit = (e) => {
+const validate = (e) => {
     e.preventDefault ();
     if (!name || !email || !phone || !address)
         {
@@ -77,7 +77,7 @@ const submit = (e) => {
                 <input value={checkEmail} onChange={(e) => setCheckEmail(e.target.value)} type="Confirme Email"  className="form-input"   placeholder="Email" required/>
                 <input value={phone}onChange={(e) => setPhone(e.target.value)} type="number" className="form-input"   placeholder="Teléfono"required />
             </div>
-            <button  className='ButtonForm' onClick = {submit}
+            <button  className='ButtonForm' onClick = {validate}
             >Validate data</button>
         
             </form>
@@ -85,4 +85,4 @@ const submit = (e) => {
 }
 
             
-export default ClientForm
+export default FormUser

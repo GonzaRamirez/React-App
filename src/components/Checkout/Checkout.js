@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { CartContext } from "../../context/CartContext"
 import { collection, getDocs, query, where, documentId, writeBatch, addDoc } from 'firebase/firestore'
 import { db } from '../../Services/Firebase/index'
-import ClientForm from "../Form/Form"
+import FormUser from "../Form/Form"
 import { useNavigate } from "react-router-dom"
 import '../Checkout/Checkout.css'
 import Swal from "sweetalert2"
@@ -108,7 +108,7 @@ const Checkout = () => {
     return (
         <div>
             <h1 className="mt-5">Datos para generar la orden de compra</h1>
-            <ClientForm completoDatos={completoDatos} />
+            <FormUser completoDatos={completoDatos} />
             {personalData
                 ? <button className="ButtonForm" onClick={createOrder}>Confirmar pedido</button>
                 : ""}
