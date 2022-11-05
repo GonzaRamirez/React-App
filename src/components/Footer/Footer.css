@@ -1,0 +1,28 @@
+ *{
+    margin: 0%;
+    padding: 0%;
+ }
+ 
+ .Footer{
+    display: flex;
+    justify-content: center;
+    background-color: #52D3FF;
+    color: black;
+    width: 100%;
+    bottom: 0;
+    margin-top: 280px;
+    width: 100%;
+
+  }
+  
+  .logo {
+    height: 180px;
+    width: 180px;
+  }
+  
+  
+  .Slogan{
+    font-size: 20px;
+    color: black;
+  }
+  

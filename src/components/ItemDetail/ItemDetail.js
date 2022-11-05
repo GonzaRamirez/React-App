@@ -2,23 +2,28 @@ import './ItemDetail.css'
 import ItemCount from '../ItemCount/ItemCount'
 import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
-/* import { Link } from 'react-router-dom' */
+import { Link } from 'react-router-dom'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
 
 
 const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
+
+
     
-    const { addProduct, /* insInCart */ } = useContext(CartContext)
+    const { addProduct, isInCart, getProductQuantity } = useContext(CartContext)
 
    
     const handleOnAdd = (Quantity) => {
         const productToAdd = {
             id, 
-            name, 
+            name,
+            img, 
             price, 
-            Quantity    
+            description
         }
+
+                
         const showingAlert = withReactContent(Swal)
         showingAlert.fire({
         position: 'top-end',
@@ -29,8 +34,10 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
         timer: 2500
       })
         
-        addProduct(productToAdd)
+        addProduct(productToAdd, Quantity)
     }
+
+    const quantityAdded = getProductQuantity(id)
 
 
 
@@ -59,7 +66,9 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
                     </p> 
                 </div>           
             <footer className='ItemFooter'>
-            <ItemCount onAdd={handleOnAdd} stock={stock} />
+            { stock !== 0 ? <ItemCount onAdd={handleOnAdd} stock={stock} initial={quantityAdded} />: <p>No hay stock</p>}
+                {isInCart(id) && <Link to='/cart' className='Button mt-4'>Finalizar compra</Link>}
+            
             </footer>
         </article>
     )

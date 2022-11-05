@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from "react"
+import { useState, useEffect, createContext, useContext } from "react"
 
 export const CartContext = createContext({
     cart: [],
@@ -8,58 +8,87 @@ export const CartContext = createContext({
 export const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
     const [totalQuantity, setTotalQuantity] = useState(0)
-    const [total, setTotal] = useState(0) //eslint-disable-line
+    const [total, setTotal] = useState(0)
 
-
-      useEffect(() => {
+    useEffect(() => {
         const totalQty = getQuantity()
         setTotalQuantity(totalQty)
-    }, [cart])//eslint-disable-line
+    }, [cart]) //eslint-disable-line
 
-      useEffect(() => {
+    useEffect(() => {
         const total = getTotal()
         setTotal(total)
-      })
+      }, [cart]) //eslint-disable-line
 
-    const addProduct = (productToAdd) => {
+    const addProduct = (productToAdd, quantity) => {
         if(!isInCart(productToAdd.id)) {
+            productToAdd.quantity = quantity
             setCart([...cart, productToAdd])
         } else {
-        console.log('el producto ya esta en el carrito')
+            const cartUpdated = cart.map(prod => {
+                if(prod.id === productToAdd.id) {
+                    const productUpdated = {
+                        ...prod, quantity: quantity + prod.quantity
+                    }
+
+                    return productUpdated
+                } else {
+                    return prod
+                }
+            })
+
+            setCart(cartUpdated)
         }
     }
 
     const isInCart = (id) => {
-        return cart.some(prod => prod.id === id)
+        return cart.find(product => product.id === id)
     }
 
-    const removeItem = (id) => {
+    
+    const getQuantity = () => {
+        let accu = 0
+        
+        cart.forEach(prod => {
+            accu += prod.quantity
+        })
+        
+        return accu
+    }
+    
+    const getProductQuantity = (id) => {
+        const product = cart.find(prod => prod.id === id)
+        
+        return product?.quantity
+    }
+    const getTotal = () => {
+        let total = 0
+        
+        cart.forEach(prod => {
+            total += prod.quantity * prod.price
+        })
+        
+        return total
+    }
+    
+    const removeProduct = (id) => {
         const cartWithoutProduct = cart.filter(prod => prod.id !== id)
         setCart(cartWithoutProduct)
     }
 
-    const getQuantity = () => {
-        let accu = 0
-
-        cart.forEach(prod => {
-            accu += prod.Quantity
-        })
-
-        return accu
+    
+    const clearCart = () => {
+        setCart([])
     }
-
-    const getTotal = () => {
-        let accu = 0
-
-        cart.forEach(prod => {
-            accu += prod.Quantity * prod.price
-        })
-        return accu
-    }
-
+    
+    
     return (
-        <CartContext.Provider value={{ cart, addProduct, removeItem, totalQuantity}}>
+        <CartContext.Provider value={{ cart, totalQuantity, getQuantity, addProduct, getProductQuantity, getTotal, removeProduct, isInCart, total, clearCart, }}>
             {children}
         </CartContext.Provider>
     )
+}
+
+export const useCart = () => {
+    return useContext(CartContext)
 }

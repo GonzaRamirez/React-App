@@ -1,0 +1,14 @@
+.productsContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin:5px;
+    flex-wrap: wrap;
+}
+
+.PriceTotal{
+    font-size: 30px;
+    font-weight: bolder;
+}

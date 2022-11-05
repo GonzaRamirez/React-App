@@ -1,0 +1,57 @@
+.CardCartItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: auto;
+    padding: 20px;
+    margin: 30px;
+    background-color:lightgray;
+    border-radius: 10px;
+}
+
+.CardImg{
+    width: 150px;
+}
+
+.InfoCart {
+    margin-right: 40px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.ContainerItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    margin: 0px;
+}
+
+.NameCartItem {
+    font-size: 30px;
+    font-weight: bolder;
+    margin-left: 0px;
+}
+
+.PriceItem {
+    font-size: 20px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+}
+.PriceTotalContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.PriceSubTotal{
+    margin-right: 60px;
+    font-size: 20px;
+    font-weight: bolder;
+}

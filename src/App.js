@@ -1,23 +1,19 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-/* import Counter from './components/Counter/Counter'; */
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { CartProvider } from './context/CartContext';
+import Cart from './components/Cart/Cart'
+import Checkout from './components/Checkout/Checkout';
+import Footer from './components/Footer/Footer';
 
 
 
-/* function App() {
-  const handleOnAdd = () => {
-    console.log('se hizo click en agregar al carrito')
-  } */
+
 function App(){
   return (
     <div className="App">
-      {/* <Navbar />
-      <ItemListContainer />
-      <Counter onAdd={handleOnAdd}/> */}
       <CartProvider>
         <BrowserRouter>
           <Navbar />
@@ -25,8 +21,12 @@ function App(){
             <Route path='/' element={<ItemListContainer />}/>  
             <Route path='/category/:idCategory' element={<ItemListContainer />} />
             <Route path='/detail/:idProduct' element={ <ItemDetailContainer />}/> 
+            <Route path='/cart' element={<Cart />}/> 
+            <Route path='/checkout' element={<Checkout />}/> 
             <Route path='*' element={<h1>404 NOT FOUND</h1>} />
           </Routes>
+
+          <Footer />
            
         </BrowserRouter>
       </CartProvider>
